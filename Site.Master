@@ -1,0 +1,57 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.Master.cs" Inherits="Site" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Conspromav Demo | Prototipo por Jenny Flores</title>
+    <link href="~/Content/Styles.css" rel="stylesheet" />
+    <script src="Content/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="Content/Scripts.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="HeadContentPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" autocomplete="off">
+        <div class="page">
+            <dx:Header runat="server" ID="HeaderControl" />
+            <div>
+                <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="footer">
+                <div class="columns content-сolumn">
+                    <div class="column rightBorder">
+                        <h5>Comienza la construccion de tu vida, hoy</h5>
+                        <div class="text">Visita a la constructora Conspromav, y encuentra nuestros servicios y productos.</div>
+                        <div class="text"><a class="orangeLink" href="https://www.devexpress.com/Home/try.xml">Este es un  prototipo web desktop</a></div>
+                    </div>
+                    <div class="column rightBorder">
+                        <h5>Estamos aqui para ayudar</h5>
+                        <div class="text">Dinos como podemos ayudarte, estamos predispuestos para usted.</div>
+                        <div class="text"><a class="orangeLink" href="mailto:jennyflores23@icloud.com">jennyflores23@icloud.com </a></div>
+                    </div>
+                    <div class="column">
+                        <h5>Disenado para proyecto de tesis de graduación</h5>
+                        <div class="text">
+                            <asp:ContentPlaceHolder ID="FooterControlsPlaceHolder" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="info">
+                    <div class="content-сolumn">
+                        <div class="copyright">
+                            Copyright (c) <%:DateTime.Today.Year.ToString()%> Universidad de Guayaquil.<br />Está aplicación web contiene nombres de ciudadelas no reales.
+                        </div>
+                        <div class="logo">
+                            <dx:ASPxHyperLink ID="DevExpressHyperLink" runat="server" ImageUrl="~/Content/Images/Footer_Logo.png" Width="172px" Height="35px"
+                                NavigateUrl="http://www.facturitas.com/">
+                            </dx:ASPxHyperLink>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

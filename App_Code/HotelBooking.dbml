@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PRUEBA" EntityNamespace="HotelBooking" ContextNamespace="HotelBooking" Class="HotelBookingDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=9.0.1.223;Initial Catalog=PRUEBA;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DB_A15AC8_ATENEAConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cities" Member="Cities">
+    <Type Name="City">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="City_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="State_Province" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Offer" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="City_Image" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Metro_Area_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="City_Hotel" Member="Hotels" ThisKey="ID" OtherKey="City_ID" Type="Hotel" />
+      <Association Name="Metro_Area_City" Member="Metro_Area" ThisKey="Metro_Area_ID" OtherKey="ID" Type="Metro_Area" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rooms" Member="Rooms">
+    <Type Name="Room">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Hotel_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Room_Type" Member="Room_Type_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Room_Short_Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Nighly_Rate" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Room_Image1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Room_Image2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Room_Image3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Room_Image4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Room_image5" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Room_Picture" Member="Pictures" ThisKey="ID" OtherKey="Room_ID" Type="Picture" />
+      <Association Name="Room_Reservation" Member="Reservations" ThisKey="ID" OtherKey="Room_ID" Type="Reservation" />
+      <Association Name="Room_Room_Feature" Member="Room_Features" ThisKey="ID" OtherKey="Room_ID" Type="Room_Feature" />
+      <Association Name="Hotel_Room" Member="Hotel" ThisKey="Hotel_ID" OtherKey="ID" Type="Hotel" IsForeignKey="true" />
+      <Association Name="Room_Type_Room" Member="Room_Type" ThisKey="Room_Type_ID" OtherKey="ID" Type="Room_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Features_List" Member="Features_Lists">
+    <Type Name="Features_List">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Feature_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Guests" Member="Guests">
+    <Type Name="Guest">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="First_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Last_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Postal_Code" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Phone_Number" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hotel_Features" Member="Hotel_Features">
+    <Type Name="Hotel_Feature">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Hotel_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Hotel_Hotel_Feature" Member="Hotel" ThisKey="Hotel_ID" OtherKey="ID" Type="Hotel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hotel_Images" Member="Hotel_Images">
+    <Type Name="Hotel_Image">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Hotel_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Image_Id" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Hotel_Hotel_Image" Member="Hotel" ThisKey="Hotel_ID" OtherKey="ID" Type="Hotel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Hotels" Member="Hotels">
+    <Type Name="Hotel">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Hotel_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Hotel_Class" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="Room_Count" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Location_Rating" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Avg_Customer_Rating" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Our_Rating" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="City_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Postal_Code" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="Website" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Metro_Area" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Hotel_Room" Member="Rooms" ThisKey="ID" OtherKey="Hotel_ID" Type="Room" />
+      <Association Name="Hotel_Hotel_Feature" Member="Hotel_Features" ThisKey="ID" OtherKey="Hotel_ID" Type="Hotel_Feature" />
+      <Association Name="Hotel_Hotel_Image" Member="Hotel_Images" ThisKey="ID" OtherKey="Hotel_ID" Type="Hotel_Image" />
+      <Association Name="Hotel_Picture" Member="Pictures" ThisKey="ID" OtherKey="Hotel_ID" Type="Picture" />
+      <Association Name="Hotel_Review" Member="Reviews" ThisKey="ID" OtherKey="Hotel_ID" Type="Review" />
+      <Association Name="City_Hotel" Member="City" Storage="_City1" ThisKey="City_ID" OtherKey="ID" Type="City" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pictures" Member="Pictures">
+    <Type Name="Picture">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Picture_Id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Hotel_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Room_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Hotel_Picture" Member="Hotel" ThisKey="Hotel_ID" OtherKey="ID" Type="Hotel" IsForeignKey="true" />
+      <Association Name="Room_Picture" Member="Room" ThisKey="Room_ID" OtherKey="ID" Type="Room" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservations" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Room_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Check_In" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Check_Out" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Amount_Due" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Amount_Paid" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Reservation_Satus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_Of_Adults" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Number_Of_Children" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Special_Requests" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Room_Reservation" Member="Room" ThisKey="Room_ID" OtherKey="ID" Type="Room" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reviews" Member="Reviews">
+    <Type Name="Review">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Hotel_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Review_Text" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Posted_On" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Rating" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Reviewer_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Hotel_Review" Member="Hotel" ThisKey="Hotel_ID" OtherKey="ID" Type="Hotel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Room_Features" Member="Room_Features">
+    <Type Name="Room_Feature">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Room_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Feature_Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Room_Room_Feature" Member="Room" ThisKey="Room_ID" OtherKey="ID" Type="Room" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Room_Types" Member="Room_Types">
+    <Type Name="Room_Type">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Type_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Room_Type_Room" Member="Rooms" ThisKey="ID" OtherKey="Room_Type_ID" Type="Room" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Metro_Areas" Member="Metro_Areas">
+    <Type Name="Metro_Area">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Area_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Map_Image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Metro_Area_City" Member="Cities" ThisKey="ID" OtherKey="Metro_Area_ID" Type="City" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SCPV_Cargo" Member="SCPV_Cargo">
+    <Type Name="SCPV_Cargo">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Codigo" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="FechaCreacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioCreacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaModificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioModificacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SCPV_Empresa" Member="SCPV_Empresa">
+    <Type Name="SCPV_Empresa">
+      <Column Name="ID_Empresa" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre_Empresa" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Direccion_Empresa" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Logo_Empresa" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Ruc_Empresa" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Column Name="FechaCreacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioCreacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaModificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioModificacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SCPV_Empleados" Member="SCPV_Empleados">
+    <Type Name="SCPV_Empleados">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ID_Cargo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumeroIdentificacion" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="ID_Empresa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Next" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EsJefe" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EsGerente" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EsGerenteGeneral" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="FechaCreacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioCreacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaModificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioModificacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SCPV_Usuario_Empleados" Member="SCPV_Usuario_Empleados">
+    <Type Name="SCPV_Usuario_Empleados">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Empleado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaCreacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioCreacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaModificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioModificacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SCPV_Perfiles" Member="SCPV_Perfiles">
+    <Type Name="SCPV_Perfiles">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Codigo" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="UsuarioCreacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaCreacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioModificacion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SCPV_Diccionario" Member="SCPV_Diccionario">
+    <Type Name="SCPV_Diccionario">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_tipo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Codigo" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="FechaCreacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioCreacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaModificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioModificacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SCPV_TipoDiccionario" Member="SCPV_TipoDiccionario">
+    <Type Name="SCPV_TipoDiccionario">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Codigo" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="FechaCreacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioCreacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaModificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioModificacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SCPV_Clientes" Member="SCPV_Clientes">
+    <Type Name="SCPV_Clientes">
+      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Identificacion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Ciudad" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Referencia" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="TelefonoConvencional" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TelefonoCelurares" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Login" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="ID_Cliente" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FechaCreacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioCreacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioModificacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.SP_SCPV_Actualiza_Usuario" Method="SP_SCPV_Actualiza_Usuario">
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Estado" Parameter="estado" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SCPV_Ingresa_Usuario" Method="SP_SCPV_Ingresa_Usuario">
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ID_Empleado" Parameter="iD_Empleado" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Estado" Parameter="estado" Type="System.String" DbType="VarChar(1)" />
+    <ElementType Name="SP_SCPV_Ingresa_UsuarioResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Empleado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaCreacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioCreacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaModificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsuarioModificacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SCPV_Verifica_Usuario" Method="SP_SCPV_Verifica_Usuario">
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="SP_SCPV_Verifica_UsuarioResult">
+      <Column Name="RESPUESTA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MENSAJE" Type="System.String" DbType="VarChar(17) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SCPV_ObtenerListadoImagen" Method="SP_SCPV_ObtenerListadoImagen">
+    <Parameter Name="Construccion_ID" Parameter="construccion_ID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SCPV_ObtenerListadoImagenResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Picture_Id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Hotel_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SCPV_Obtiene_Diccionario" Method="SP_SCPV_Obtiene_Diccionario">
+    <Parameter Name="tipo" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SCPV_Obtiene_DiccionarioResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Codigo" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SCPV_Obtiene_Clientes" Method="SP_SCPV_Obtiene_Clientes">
+    <ElementType Name="SP_SCPV_Obtiene_ClientesResult">
+      <Column Name="Identificacion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Ciudad" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Referencia" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Login" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TelefonoConvencional" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TelefonoCelurares" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ID_Cliente" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SCPV_Ingresa_Empleado" Method="SP_SCPV_Ingresa_Empleado">
+    <Parameter Name="ID_Cargo" Parameter="iD_Cargo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Nombres" Parameter="nombres" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Apellidos" Parameter="apellidos" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Estado" Parameter="estado" Type="System.String" DbType="VarChar(1)" />
+    <ElementType Name="SP_SCPV_Ingresa_EmpleadoResult">
+      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Identificacion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Ciudad" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Referencia" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="TelefonoConvencional" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TelefonoCelurares" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Login" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="ID_Cliente" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="FechaCreacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioCreacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioModificacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SCPV_Ingresa_Cliente" Method="SP_SCPV_Ingresa_Cliente">
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TipoIdentifi" Parameter="tipoIdentifi" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="Nombres" Parameter="nombres" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Apellidos" Parameter="apellidos" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Ciudad" Parameter="ciudad" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Referencia" Parameter="referencia" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="TelefonoConvencional" Parameter="telefonoConvencional" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TelefonoCelurares" Parameter="telefonoCelurares" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Estado" Parameter="estado" Type="System.String" DbType="VarChar(1)" />
+    <ElementType Name="SP_SCPV_Ingresa_ClienteResult">
+      <Column Name="TipoIdentificacion" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Identificacion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Ciudad" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Referencia" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="TelefonoConvencional" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TelefonoCelurares" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Login" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="ID_Cliente" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="FechaCreacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioCreacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="FechaModificacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuarioModificacion" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SCPV_Actualiza_Empleado" Method="SP_SCPV_Actualiza_Empleado">
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ID_Cargo" Parameter="iD_Cargo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ID_Empleado" Parameter="iD_Empleado" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nombres" Parameter="nombres" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Apellidos" Parameter="apellidos" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Estado" Parameter="estado" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SCPV_Actualiza_Cliente" Method="SP_SCPV_Actualiza_Cliente">
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Identificacion" Parameter="identificacion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TipoIdentifi" Parameter="tipoIdentifi" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="ID_Cliente" Parameter="iD_Cliente" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="Nombres" Parameter="nombres" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Apellidos" Parameter="apellidos" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Ciudad" Parameter="ciudad" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Referencia" Parameter="referencia" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="TelefonoConvencional" Parameter="telefonoConvencional" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TelefonoCelurares" Parameter="telefonoCelurares" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Estado" Parameter="estado" Type="System.String" DbType="VarChar(1)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
